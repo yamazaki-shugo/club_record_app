@@ -6,7 +6,5 @@ class Position < ActiveHash::Base
     {id: 4, name: '監督・コーチ'}
   ]
 
-  include ActiveHash::Assiciations
-  has_many :users
   
 end

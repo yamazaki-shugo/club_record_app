@@ -9,8 +9,12 @@ class User < ApplicationRecord
   has_many :messages
   has_many :events
 
-  extend
-  ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :position
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :position
+
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates :password, format: { with: PASSWORD_REGEX }
+  validates :nickname, presence: true
+  validates :position_id, numericality: { other_than: 1, message: "can't be blank" }
   
 end
